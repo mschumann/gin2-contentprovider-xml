@@ -177,7 +177,6 @@ public class XMLContentProvider extends AbstractContentProvider {
 			Node urlNode = urlNodes.item(idx);
 			
 			if (urlNode.getTextContent().equalsIgnoreCase(contentURL)) {
-				System.out.println("Match");
 				return createContent(urlNode.getParentNode(), contentURL);
 			}
 		}
