@@ -5,6 +5,7 @@ import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
+import java.util.Locale;
 import java.util.Properties;
 
 import com.iqser.core.model.Attribute;
@@ -50,7 +51,7 @@ public class XMLContentProviderTest extends ContentProviderTestCase {
 		Content content = new Content();
 		content.setContentUrl("1");
 		content.setProvider("provider");
-		DateFormat format = DateFormat.getDateInstance();
+		DateFormat format = DateFormat.getDateInstance(DateFormat.DEFAULT, Locale.GERMAN);
 		Date date = format.parse("23.03.2005");
 		content.setModificationDate(date.getTime());
 		content.addAttribute(new Attribute("NAME", "Max Miller", Attribute.ATTRIBUTE_TYPE_TEXT, true));
@@ -164,7 +165,7 @@ public class XMLContentProviderTest extends ContentProviderTestCase {
 		Content content = new Content();
 		content.setContentUrl("2");
 		content.setProvider("provider");
-		DateFormat format = DateFormat.getDateInstance();
+		DateFormat format = DateFormat.getDateInstance(DateFormat.DEFAULT, Locale.GERMAN);
 		Date date = format.parse("12.12.1997");
 		content.setModificationDate(date.getTime());
 		content.addAttribute(new Attribute("NAME", "Peter Mason", Attribute.ATTRIBUTE_TYPE_TEXT, true));

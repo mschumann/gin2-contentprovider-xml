@@ -10,6 +10,7 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -43,6 +44,8 @@ public class XMLContentProvider extends AbstractContentProvider {
     private List<String> KEY_ATTRIBUTE_NAMES;    // optional
     private List<String> DATE_ATTRIBUTE_NAMES;   // optional
     private List<String> NUMBER_ATTRIBUTE_NAMES; // optional
+    private Locale DATE_LOCALE;      // optional
+    private int DATE_FORMAT;         // optional
     
 	@Override
 	public void init() {
@@ -51,6 +54,8 @@ public class XMLContentProvider extends AbstractContentProvider {
 		URL_TAG_NAME = getInitParams().getProperty("url-tag-name");
 		CONTENT_TYPE = getInitParams().getProperty("content-type");
 		DATE_TAG_NAME = getInitParams().getProperty("date-tag-name");
+		DATE_LOCALE = new Locale(getInitParams().getProperty("date-locale", "DE"));
+		//DATE_FORMAT = Integer.parseInt(getInitParams().getProperty("date-format", "MEDIUM");
 		
 		if (getInitParams().containsKey("key-attribute-names")) {
 			String[] keys = getInitParams().getProperty("key-attribute-names").split(",");
@@ -228,7 +233,7 @@ public class XMLContentProvider extends AbstractContentProvider {
 								
 				content.addAttribute(a);
 			} else if (attributeNode.getNodeName().equalsIgnoreCase(DATE_TAG_NAME)) {
-				DateFormat format = DateFormat.getDateInstance();
+				DateFormat format = DateFormat.getDateInstance(DateFormat.DEFAULT, DATE_LOCALE);
 				String text = attributeNode.getTextContent();
 				
 				if (text != null) {
