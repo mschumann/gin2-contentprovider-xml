@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE contact>
+<contacts>
+	<contact>
+		<id>1</id>
+		<name>Max Miller</name>
+		<city>Berlin</city>
+		<age>23</age>
+		<date>23.03.2005</date>
+	</contact>
+	<contact>
+		<id>2</id>
+		<name>Peter Mason</name>
+		<city>New York</city>
+		<age>34</age>
+		<date>12.12.1997</date>
+		<messaging>
+			<skype>p_mason</skype>
+		</messaging>
+	</contact>
+</contacts>

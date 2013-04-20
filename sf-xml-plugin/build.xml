@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE project>
+<project basedir="." default="export-plugin" name="sf-xml-plugin">
+	<property environment="env" />
+	<property name="debuglevel" value="source,lines,vars" />
+	<property name="targetJavaVersion" value="1.6" />
+	<property name="sourceJavaVersion" value="1.6" />
+	<property name="targetDirectory" value="target" />
+	<property file="build.properties" />
+	<property name="build.log.dir" value="${java.io.tmpdir}/buildlog"/>
+	
+	<condition property="finalGinPluginFile" value="${customGinPluginFile}" else="${ginPluginFile}">
+		<isset property="customGinPluginFile" />
+	</condition>
+	
+	
+	<path id="/lib/runtime Libraries.libraryclasspath">
+		<fileset dir="lib">
+			<include name="**/*.jar" />
+		</fileset>
+	</path>
+	<path id="/lib/distribution Libraries.libraryclasspath">
+		<fileset dir="lib">
+			<include name="**/*.jar" />
+		</fileset>
+	</path>
+	<path id="Plugin.classpath">
+		<pathelement location="bin" />
+		<path refid="/lib/runtime Libraries.libraryclasspath" />
+		<path refid="/lib/distribution Libraries.libraryclasspath" />
+	</path>
+	<taskdef resource="gindevelopertasks.properties" classpathref="/lib/runtime Libraries.libraryclasspath" />
+
+
+	<target name="init">
+		<delete dir="bin" />
+		<mkdir dir="bin" />
+		<copy includeemptydirs="false" todir="bin">
+			<fileset dir="src/main/java">
+				<exclude name="**/*.java" />
+			</fileset>
+		</copy>
+
+		<tstamp>
+			<format property="timestamp" pattern="yyyy-MM-dd_HH-mm-ss" />
+		</tstamp>
+		
+		<mkdir dir="${build.log.dir}" />
+		<property name="build.log.filename" value="build_${timestamp}.log" />
+		<record name="${build.log.dir}/${build.log.filename}" loglevel="verbose" append="false" />
+		<echo message="Build logged to ${build.log.filename}" />
+	</target>
+	
+	<target depends="init" name="build-project">
+		<echo message="${ant.project.name}: ${ant.file}" />
+		<javac includeantruntime="false" debug="true" debuglevel="${debuglevel}" destdir="bin" source="${sourceJavaVersion}" target="${targetJavaVersion}">
+			<src path="src/main/java" />
+			<classpath refid="Plugin.classpath" />
+		</javac>
+	</target>
+	<target depends="build-project" name="export-plugin">
+		<jar destfile="${pluginLibraryFile}" basedir="bin" />
+		<createplugin libraryDirectory="${libraryDirectory}" pluginDescriptorFile="${pluginDescriptorFile}" pluginLibraryFile="${pluginLibraryFile}" ginPluginFile="${finalGinPluginFile}" />
+	</target>
+</project>
