@@ -43,6 +43,7 @@ public class XMLContentProviderTest extends ContentProviderTestCase {
 		initParams.setProperty("url-tag-name", "id");
 		initParams.setProperty("date-tag-name", "date");
 		initParams.setProperty("key-attribute-names", "name");
+		initParams.setProperty("date-format", "dd.mm.yyyy");
 		XMLContentProvider providerUnderTest = new XMLContentProvider();
 		providerUnderTest.setInitParams(initParams);
 		providerUnderTest.setName("provider");

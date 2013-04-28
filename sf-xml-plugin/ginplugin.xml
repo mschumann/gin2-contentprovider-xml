@@ -13,7 +13,7 @@
     <param name="key-attribute-names" type="String" optional="true">Definition of tag names for key attributes.</param>
     <param name="date-attribute-names" type="String" optional="true">The node tag names for date attributes.</param>
     <param name="number-attribute-names" type="String" optional="true">The  node tag names for number attributes.</param>
-    <param name="date-locale" type="String" optional="true">Locale for parsing Dates. The default value is DE.</param>
+    <param name="date-format" type="String" optional="true">The date format for a simple date formatte described as a string pattern.</param>
   </params>
 </ginplugin>
 
