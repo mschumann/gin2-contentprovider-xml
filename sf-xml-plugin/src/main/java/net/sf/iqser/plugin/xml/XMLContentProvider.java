@@ -41,6 +41,7 @@ public class XMLContentProvider extends AbstractContentProvider {
     private String URL_TAG_NAME;     // mandatory
     private String CONTENT_TYPE;     // mandatory
     private String DATE_TAG_NAME;    // optional
+    private String TEXT_TAG_NAME;    // optional
     private List<String> KEY_ATTRIBUTE_NAMES;    // optional
     private List<String> DATE_ATTRIBUTE_NAMES;   // optional
     private List<String> NUMBER_ATTRIBUTE_NAMES; // optional
@@ -53,6 +54,7 @@ public class XMLContentProvider extends AbstractContentProvider {
 		URL_TAG_NAME = getInitParams().getProperty("url-tag-name");
 		CONTENT_TYPE = getInitParams().getProperty("content-type");
 		DATE_TAG_NAME = getInitParams().getProperty("date-tag-name");
+		TEXT_TAG_NAME = getInitParams().getProperty("text-tag-name");
 		DATE_FORMAT = DateFormat.getDateInstance();
 		
 		if (getInitParams().contains("date-format")) {
@@ -202,6 +204,7 @@ public class XMLContentProvider extends AbstractContentProvider {
 						
 			if (!attributeNode.getNodeName().equalsIgnoreCase(URL_TAG_NAME) 
 					&& !attributeNode.getNodeName().equalsIgnoreCase(DATE_TAG_NAME)
+					&& !attributeNode.getNodeName().equalsIgnoreCase(TEXT_TAG_NAME)
 					&& !attributeNode.getNodeName().equalsIgnoreCase("#text")
 					&& attributeNode.getChildNodes().getLength() == 1) 
 			{					
@@ -243,6 +246,12 @@ public class XMLContentProvider extends AbstractContentProvider {
 					} catch (ParseException e) {
 						logger.error("Could not parse modification date", e);
 					}
+				}
+			} else if (attributeNode.getNodeName().equalsIgnoreCase(TEXT_TAG_NAME)) {
+				String text = attributeNode.getTextContent();
+				
+				if (text != null && text.length() > 0) {
+					content.setFulltext(text);
 				}
 			}
 		}

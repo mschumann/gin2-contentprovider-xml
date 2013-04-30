@@ -14,6 +14,8 @@
     <param name="date-attribute-names" type="String" optional="true">The node tag names for date attributes.</param>
     <param name="number-attribute-names" type="String" optional="true">The  node tag names for number attributes.</param>
     <param name="date-format" type="String" optional="true">The date format for a simple date formatte described as a string pattern.</param>
+    <param name="text-tag-name" type="String" optional="true">The tag name for a fulltext part of the content item.</param>
+    <param name="content-type" type="String" optional="false">The content type of the content objects of the xml file.</param>
   </params>
 </ginplugin>
 
