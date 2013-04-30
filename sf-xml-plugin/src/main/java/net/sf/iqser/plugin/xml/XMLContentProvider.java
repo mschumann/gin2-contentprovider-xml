@@ -62,7 +62,7 @@ public class XMLContentProvider extends AbstractContentProvider {
 		}
 		
 		if (getInitParams().containsKey("key-attribute-names")) {
-			String[] keys = getInitParams().getProperty("key-attribute-names").split(",");
+			String[] keys = getInitParams().getProperty("key-attribute-names").split("||");
 			KEY_ATTRIBUTE_NAMES = Arrays.asList(keys);
 		}
 		
