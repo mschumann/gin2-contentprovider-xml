@@ -57,22 +57,22 @@ public class XMLContentProvider extends AbstractContentProvider {
 		TEXT_TAG_NAME = getInitParams().getProperty("text-tag-name");
 		DATE_FORMAT = DateFormat.getDateInstance();
 		
-		if (getInitParams().contains("date-format")) {
+		if (getInitParams().containsKey("date-format")) {
 			DATE_FORMAT = new SimpleDateFormat(getInitParams().getProperty("date-format"));
 		}
 		
 		if (getInitParams().containsKey("key-attribute-names")) {
-			String[] keys = getInitParams().getProperty("key-attribute-names").split("||");
+			String[] keys = getInitParams().getProperty("key-attribute-names").split(",");
 			KEY_ATTRIBUTE_NAMES = Arrays.asList(keys);
 		}
 		
 		if (getInitParams().containsKey("date-attribute-names")) {
-			String[] dan = getInitParams().getProperty("date-attribute-names").split("||");
+			String[] dan = getInitParams().getProperty("date-attribute-names").split(",");
 			DATE_ATTRIBUTE_NAMES = Arrays.asList(dan);
 		}
 		
 		if (getInitParams().containsKey("number-attribute-names")) {
-			String[] nan = getInitParams().getProperty("number-attribute-names").split("||");
+			String[] nan = getInitParams().getProperty("number-attribute-names").split(",");
 			NUMBER_ATTRIBUTE_NAMES = Arrays.asList(nan);
 		}
 		
@@ -219,6 +219,14 @@ public class XMLContentProvider extends AbstractContentProvider {
 				} else if (DATE_ATTRIBUTE_NAMES != null 
 						&& DATE_ATTRIBUTE_NAMES.contains(attributeNode.getNodeName())) {
 					a.setType(Attribute.ATTRIBUTE_TYPE_DATE);
+					
+					try {
+						Date date = DATE_FORMAT.parse(a.getValue());
+						a.setValue(Long.toString(date.getTime()));
+					} catch (ParseException e) {
+						logger.error("Could not parse date attribute " + a.getName() + " of " + content.toString());
+						a.setType(Attribute.ATTRIBUTE_TYPE_TEXT);
+					}
 				} else if (NUMBER_ATTRIBUTE_NAMES != null
 						&& NUMBER_ATTRIBUTE_NAMES.contains(attributeNode.getNodeName())) {
 					a.setType(Attribute.ATTRIBUTE_TYPE_NUMBER);
@@ -230,7 +238,7 @@ public class XMLContentProvider extends AbstractContentProvider {
 						number = format.parse(a.getValue());
 					} catch (ParseException e) { }
 					
-					if (number != null) {
+					if (number != null && number.toString().equals(a.getValue())) {
 						a.setType(Attribute.ATTRIBUTE_TYPE_NUMBER);
 					}
 				}
@@ -244,7 +252,7 @@ public class XMLContentProvider extends AbstractContentProvider {
 						Date date = DATE_FORMAT.parse(text);
 						content.setModificationDate(date.getTime());
 					} catch (ParseException e) {
-						logger.error("Could not parse modification date", e);
+						logger.error("Could not parse modification date of " + content.toString());
 					}
 				}
 			} else if (attributeNode.getNodeName().equalsIgnoreCase(TEXT_TAG_NAME)) {
@@ -255,7 +263,7 @@ public class XMLContentProvider extends AbstractContentProvider {
 				}
 			}
 		}
-				
+		
 		return content;
 	}
 

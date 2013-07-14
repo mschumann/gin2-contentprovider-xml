@@ -43,7 +43,9 @@ public class XMLContentProviderTest extends ContentProviderTestCase {
 		initParams.setProperty("url-tag-name", "id");
 		initParams.setProperty("date-tag-name", "date");
 		initParams.setProperty("key-attribute-names", "name");
-		initParams.setProperty("date-format", "dd.mm.yyyy");
+		initParams.setProperty("number-attribute-names", "age");
+		initParams.setProperty("date-format", "dd.MM.yyyy");
+		initParams.setProperty("content-type", "Contact");
 		XMLContentProvider providerUnderTest = new XMLContentProvider();
 		providerUnderTest.setInitParams(initParams);
 		providerUnderTest.setName("provider");
@@ -52,6 +54,7 @@ public class XMLContentProviderTest extends ContentProviderTestCase {
 		Content content = new Content();
 		content.setContentUrl("1");
 		content.setProvider("provider");
+		content.setType("Contact");
 		DateFormat format = DateFormat.getDateInstance(DateFormat.DEFAULT, Locale.GERMAN);
 		Date date = format.parse("23.03.2005");
 		content.setModificationDate(date.getTime());
@@ -62,6 +65,7 @@ public class XMLContentProviderTest extends ContentProviderTestCase {
 		Content anotherContent = new Content();
 		anotherContent.setContentUrl("2");
 		anotherContent.setProvider("provider");
+		anotherContent.setType("Contact");
 		Date anotherDate = format.parse("12.12.1997");
 		anotherContent.setModificationDate(anotherDate.getTime());
 		anotherContent.addAttribute(new Attribute("NAME", "Peter Mason", Attribute.ATTRIBUTE_TYPE_TEXT, true));
@@ -103,6 +107,8 @@ public class XMLContentProviderTest extends ContentProviderTestCase {
 		initParams.setProperty("url-tag-name", "id");
 		initParams.setProperty("date-tag-name", "date");
 		initParams.setProperty("key-attribute-names", "name");
+		initParams.setProperty("number-attribute-names", "age");
+		initParams.setProperty("content-type", "Contact");
 		XMLContentProvider providerUnderTest = new XMLContentProvider();
 		providerUnderTest.setInitParams(initParams);
 		providerUnderTest.setName("provider");
@@ -158,6 +164,8 @@ public class XMLContentProviderTest extends ContentProviderTestCase {
 		initParams.setProperty("url-tag-name", "id");
 		initParams.setProperty("date-tag-name", "date");
 		initParams.setProperty("key-attribute-names", "name");
+		initParams.setProperty("number-attribute-names", "age");
+		initParams.setProperty("content-type", "Contact");
 		XMLContentProvider providerUnderTest = new XMLContentProvider();
 		providerUnderTest.setInitParams(initParams);
 		providerUnderTest.setName("provider");	
@@ -166,6 +174,7 @@ public class XMLContentProviderTest extends ContentProviderTestCase {
 		Content content = new Content();
 		content.setContentUrl("2");
 		content.setProvider("provider");
+		content.setType("Contact");
 		DateFormat format = DateFormat.getDateInstance(DateFormat.DEFAULT, Locale.GERMAN);
 		Date date = format.parse("12.12.1997");
 		content.setModificationDate(date.getTime());
