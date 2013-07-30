@@ -169,7 +169,7 @@ public class XMLContentProvider extends AbstractContentProvider {
 				}
 			}
 		} catch (IQserException e) {
-			logger.error("Coult not retrieve or remoce extisting content", e);
+			logger.error("Could not retrieve or remoce extisting content", e);
 		}
 		
 		logger.debug("doHousekeeping() finished");
