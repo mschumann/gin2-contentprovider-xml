@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ginplugin
+	xsi:schemaLocation="http://www.iqser.com/schema/ginplugin/2.0 http://www.iqser.com/schema/ginplugin/2.0/ginplugin.xsd"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.iqser.com/schema/ginplugin/2.0">
+
+	<!-- xsi:schemaLocation="http://www.iqser.com/schema/ginplugin/2.0 http://www.iqser.com/schema/ginplugin/2.0/ginplugin.xsd" -->
+
+	<name>iQser XML-Content-Provider</name>
+	<vendor>iQser GmbH</vendor>
+	<version>###PROJECT_VERSION###</version>
+
+	<description>
+		iQser XML-Content-Provider
+	</description>
+
+	<classname type="ContentProvider">
+		<!-- full qualified class name -->
+		net.sf.iqser.plugin.xml.XMLContentProviderr</classname>
+
+	<params>
+	</params>
+</ginplugin>

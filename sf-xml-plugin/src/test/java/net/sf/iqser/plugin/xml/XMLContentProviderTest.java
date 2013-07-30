@@ -11,6 +11,7 @@ import java.util.Properties;
 import com.iqser.core.model.Attribute;
 import com.iqser.core.model.Content;
 import com.iqser.gin.developer.test.plugin.provider.ContentProviderTestCase;
+
 import static org.junit.Assert.*;
 
 import org.junit.Test;

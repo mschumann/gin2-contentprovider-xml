@@ -29,6 +29,7 @@ import com.iqser.core.model.Content;
 import com.iqser.core.model.Parameter;
 import com.iqser.core.plugin.provider.AbstractContentProvider;
 
+
 public class XMLContentProvider extends AbstractContentProvider {
 
 	/** The Logger */
@@ -99,12 +100,14 @@ public class XMLContentProvider extends AbstractContentProvider {
 
 	@Override
 	public void destroy() { }
-
-	@Override
-	public void preRemoveInstance() {
-		// do not remove this line
-		super.preRemoveInstance();
-	}
+	
+	
+// CHECK (dbruhn) pmd violation
+//	@Override
+//	public void preRemoveInstance() {
+//		// do not remove this line
+//		super.preRemoveInstance();
+//	}
 
 	@Override
 	public void postCreateInstance() { }
@@ -236,7 +239,10 @@ public class XMLContentProvider extends AbstractContentProvider {
 					
 					try {
 						number = format.parse(a.getValue());
-					} catch (ParseException e) { }
+					} catch (ParseException e) { 
+						// CHECK (dbruhn): was an empty catch block => pmd violation
+						logger.error(String.format("Could not parse number attribute '%s' of '%s'", a.getValue(), content.toString()));
+					}
 					
 					if (number != null && number.toString().equals(a.getValue())) {
 						a.setType(Attribute.ATTRIBUTE_TYPE_NUMBER);
@@ -272,16 +278,21 @@ public class XMLContentProvider extends AbstractContentProvider {
 		return null;
 	}
 
-	@Override
 	public byte[] getBinaryData(Content arg0) {
+		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public Collection<String> getActions(Content arg0) {
+		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public void performAction(String arg0, Collection<Parameter> arg1, Content arg2) { }
+	public void performAction(String arg0, Collection<Parameter> arg1, Content arg2) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
