@@ -50,7 +50,7 @@ public class XMLContentProvider extends AbstractContentProvider {
     
 	@Override
 	public void init() {
-		logger.debug("init() called");
+		logger.info("XML Content Provider: initialize parameters");
 
 		URL_TAG_NAME = getInitParams().getProperty("url-tag-name");
 		CONTENT_TYPE = getInitParams().getProperty("content-type");
@@ -95,7 +95,7 @@ public class XMLContentProvider extends AbstractContentProvider {
 			logger.error("Couldn't create the xml document representation" , e);
 		}
 		
-		logger.debug("init() finished");
+		logger.info("init() finished");
 	}
 
 	@Override
@@ -169,7 +169,7 @@ public class XMLContentProvider extends AbstractContentProvider {
 				}
 			}
 		} catch (IQserException e) {
-			logger.error("Could not retrieve or remoce extisting content", e);
+			logger.error("Could not retrieve or remove extisting content", e);
 		}
 		
 		logger.debug("doHousekeeping() finished");
@@ -201,7 +201,9 @@ public class XMLContentProvider extends AbstractContentProvider {
 		content.setType(CONTENT_TYPE);
 		
 		NodeList attributeNodes = contentNode.getChildNodes();
-				
+		
+		logger.info(String.format("Creating content for Node '%s' with URL '%s' and provider '%s'.", contentNode, contentUrl, content.getProvider()));
+		
 		for (int idx = 0; idx < attributeNodes.getLength(); idx++) {
 			Node attributeNode = attributeNodes.item(idx);
 						
@@ -269,7 +271,7 @@ public class XMLContentProvider extends AbstractContentProvider {
 				}
 			}
 		}
-		
+		logger.info(String.format("Content '%s' created.", content));
 		return content;
 	}
 
@@ -292,7 +294,6 @@ public class XMLContentProvider extends AbstractContentProvider {
 	@Override
 	public void performAction(String arg0, Collection<Parameter> arg1, Content arg2) {
 		// TODO Auto-generated method stub
-		
 	}
 
 }
