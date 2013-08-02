@@ -50,12 +50,13 @@ public class XMLContentProvider extends AbstractContentProvider {
     
 	@Override
 	public void init() {
-		logger.info("XML Content Provider: initialize parameters");
+		logger.debug("XML Content Provider: initialize parameters");
 
 		URL_TAG_NAME = getInitParams().getProperty("url-tag-name");
 		CONTENT_TYPE = getInitParams().getProperty("content-type");
 		DATE_TAG_NAME = getInitParams().getProperty("date-tag-name");
 		TEXT_TAG_NAME = getInitParams().getProperty("text-tag-name");
+		
 		DATE_FORMAT = DateFormat.getDateInstance();
 		
 		if (getInitParams().containsKey("date-format")) {
@@ -95,7 +96,7 @@ public class XMLContentProvider extends AbstractContentProvider {
 			logger.error("Couldn't create the xml document representation" , e);
 		}
 		
-		logger.info("init() finished");
+		logger.debug("init() finished");
 	}
 
 	@Override
