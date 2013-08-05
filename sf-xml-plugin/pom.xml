@@ -13,7 +13,7 @@
 	</scm>
 	<issueManagement>
 		<system>Trac</system>
-		<url>https://sourceforge.net/apps/trac/iqserimapplugin</url>
+		<url>https://sourceforge.net/apps/trac/iqserxmlplugin</url>
 	</issueManagement>
 
 	<developers>
@@ -110,13 +110,13 @@
 		</repository>
 		<snapshotRepository>
 			<id>iqserxmlplugin-repo-snapshot</id>
-			<name>iQserIMAPContentProvider-Snapshot-Repository</name>
+			<name>iQserXMLContentProvider-Snapshot-Repository</name>
 			<url>sftp://web.sourceforge.net/home/project-web/${project.artifactId}/htdocs/maven2-snap</url>
 			<uniqueVersion>false</uniqueVersion>
 		</snapshotRepository>
 		<site>
 			<id>iqserxmlplugin.sourceforge.net</id>
-			<name>IMAP ContentProvider for iQser GIN</name>
+			<name>XML ContentProvider for iQser GIN</name>
 			<url>sftp://web.sourceforge.net/home/project-web/${project.artifactId}/htdocs</url>
 		</site>
 	</distributionManagement>

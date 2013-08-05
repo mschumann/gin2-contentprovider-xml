@@ -194,7 +194,7 @@ public class XMLContentProviderTest extends ContentProviderTestCase {
 		// execute the method(s) under test
 		Content contentFromProvider = providerUnderTest.createContent(content.getContentUrl());
 		//assertEquals(content, contentFromProvider);
-		assertTrue(contentFromProvider.equals(content));
+		assertTrue(content.equals(contentFromProvider));
 	
 		// destroy the plugin
 		providerUnderTest.destroy();
