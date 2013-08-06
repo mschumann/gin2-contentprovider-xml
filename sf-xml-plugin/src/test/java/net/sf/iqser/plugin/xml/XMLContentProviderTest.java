@@ -108,6 +108,7 @@ public class XMLContentProviderTest extends ContentProviderTestCase {
 		initParams.setProperty("xml-file-path", file.toString());
 		initParams.setProperty("url-tag-name", "id");
 		initParams.setProperty("date-tag-name", "date");
+		initParams.setProperty("date-format", "dd.MM.yyyy");
 		initParams.setProperty("key-attribute-names", "name");
 		initParams.setProperty("number-attribute-names", "age");
 		initParams.setProperty("content-type", "Contact");
@@ -168,6 +169,7 @@ public class XMLContentProviderTest extends ContentProviderTestCase {
 		initParams.setProperty("xml-file-path", file.toString());
 		initParams.setProperty("url-tag-name", "id");
 		initParams.setProperty("date-tag-name", "date");
+		initParams.setProperty("date-format", "dd.MM.yyyy");
 		initParams.setProperty("key-attribute-names", "name,city");
 		initParams.setProperty("number-attribute-names", "age");
 		initParams.setProperty("content-type", "Contact");
