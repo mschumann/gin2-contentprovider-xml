@@ -162,6 +162,8 @@ public class XMLContentProviderTest extends ContentProviderTestCase {
 		// the ContentProvider to test
 		File file = new File(System.getProperty("user.dir") + "/src/test/data.xml");
 
+		assertTrue(file.exists());
+		
 		Properties initParams = new Properties();
 		initParams.setProperty("xml-file-path", file.toString());
 		initParams.setProperty("url-tag-name", "id");
@@ -194,6 +196,7 @@ public class XMLContentProviderTest extends ContentProviderTestCase {
 		// execute the method(s) under test
 		Content contentFromProvider = providerUnderTest.createContent(content.getContentUrl());
 		//assertEquals(content, contentFromProvider);
+		assertNotNull(contentFromProvider);
 		assertTrue(content.equals(contentFromProvider));
 	
 		// destroy the plugin
